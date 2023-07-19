@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('experience_user', function (Blueprint $table) {
-            //
+        Schema::table('tagline', function (Blueprint $table) {
+            $table->foreign('service_id', 'fk_tagline_to_service')->references('id')->on('service')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('experience_user', function (Blueprint $table) {
-            //
+        Schema::table('tagline', function (Blueprint $table) {
+            $table->dropForeign('fk_tagline_to_service');
         });
     }
 };
