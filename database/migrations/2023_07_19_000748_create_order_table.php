@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('buyer_id')->nullable()->index('fk_order_buyer_to_users');
+            $table->foreignId('freelancer_id')->nullable()->index('fk_order_freelancer_to_users');
+            $table->foreignId('service_id')->nullable()->index('fk_order_to_service');
+
+            $table->longText('file')->nullable();
+            $table->longText('note')->nullable();
+            $table->date('experied')->nullable();
+            
+            $table->foreignId('order_status_id')->nullable()->index('fk_order_to_order_status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
